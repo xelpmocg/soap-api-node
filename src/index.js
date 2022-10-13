@@ -4,6 +4,7 @@ import express from 'express';
 
 import models from './models';
 import routes from './routes';
+import Remote from './remote';
 
 const app = express();
 
@@ -35,6 +36,17 @@ app.use('/users', routes.user);
 app.use('/messages', routes.message);
 
 // * Start * //
+
+
+app.get("/", function(req, res){
+  console.log("Calling")
+  Remote.multipleTwoOperands(5, 5)
+
+  console.log("Called.........")
+  res.send("Hello world")
+
+
+})
 
 app.listen(process.env.PORT, () =>
   console.log(`Example app listening on port ${process.env.PORT}!`),
